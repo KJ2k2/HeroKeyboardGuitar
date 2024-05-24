@@ -7,6 +7,7 @@ using System.Windows.Forms;
 namespace HeroKeyboardGuitar {
     internal partial class FrmSongSelect : Form
     {
+        private bool colorblind = false;
         private readonly string SONGS_ROOT_PATH = $"{Application.StartupPath}../../../Songs/";
 
         public FrmSongSelect()
@@ -47,16 +48,16 @@ namespace HeroKeyboardGuitar {
                 btnSong.Click += (e, sender) =>
                 {
                     Game.SetCurSong(filePath, genre);
-                    FrmMain frmMain = new();
+                    FrmMain frmMain = new(colorblind);
                     frmMain.Show();
                 };
                 Controls.Add(btnSong);
             }
         }
 
-        private void lblScore_Click(object sender, EventArgs e)
+        private void checkBox1_Click(object sender, EventArgs e)
         {
-
+            colorblind = checkBox1.Checked;
         }
     }
 }

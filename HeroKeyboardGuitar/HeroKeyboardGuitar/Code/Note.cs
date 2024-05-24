@@ -22,6 +22,11 @@ public enum NoteState
     /// Missed
     /// </summary>
     MISS,
+
+    /// <summary>
+    /// Miss (colorblind)
+    /// </summary>
+    CBMISS,
 }
 
 /// <summary>
@@ -98,20 +103,30 @@ public class Note
     /// picture box and state will reflect this.
     /// </summary>
     /// <param name="picTarget">PictureBox object for player's target zone</param>
+    /// <param name="Colorblind">true if colorblind mode is on</param>
     /// <returns>True if note was just missed, false if it wasn't missed or was already previously missed</returns>
-    public bool CheckMiss(PictureBox picTarget)
-    {
-        if (Pic.Left < picTarget.Left && State == NoteState.TRAVELING)
-        {
-            Pic.BackgroundImage = Resources.marker_miss;
-            State = NoteState.MISS;
-            return true;
+
+    public bool CheckMiss(PictureBox picTarget, bool Colorblind = false) {
+        if (Pic.Left < picTarget.Left && State == NoteState.TRAVELING) {
+            if (!Colorblind)
+            {
+                Pic.BackgroundImage = Resources.marker_miss;
+                State = NoteState.MISS;
+                return true;
+            }
+            else
+            {
+                Pic.BackgroundImage = Resources.marker_miss_cb;
+                State = NoteState.CBMISS;
+                return true;
+            }
         }
         else
         {
             return false;
         }
     }
+
 
 }
 

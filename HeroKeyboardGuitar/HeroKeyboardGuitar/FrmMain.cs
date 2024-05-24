@@ -15,6 +15,8 @@ internal partial class FrmMain : Form
     private const float noteSpeed = 0.5f;
     private Audio curSong;
     private Score score;
+    private bool Colorblind = true;
+
     private bool pause;
     private int playback;//Tracks where song paused
     private DateTime startTime;//track button held (cheat prevent)
@@ -29,9 +31,10 @@ internal partial class FrmMain : Form
         }
     }
 
-    public FrmMain()
+    public FrmMain(bool colorblind)
     {
         InitializeComponent();
+        Colorblind = colorblind;
         pause = false;
         startTime = DateTime.MinValue;
         playback = 0;
@@ -51,8 +54,7 @@ internal partial class FrmMain : Form
         {
             double x = actionTime * noteSpeed + picTarget.Left + picTarget.Width;
             const int noteSize = 50;
-            if (notes.Any(note => (x - note.Pic.Left) < noteSize / 2))
-            {
+            if (notes.Any(note => (x - note.Pic.Left) < noteSize)) {
                 continue;
             }
             PictureBox picNote = new()
@@ -91,7 +93,7 @@ internal partial class FrmMain : Form
             foreach (var note in notes)
             {
                 note.Move(tmrPlay.Interval * (noteSpeed * 1.3));
-                if (note.CheckMiss(picTarget))
+                if (note.CheckMiss(picTarget, Colorblind))
                 {
                     
                     score.Miss();
