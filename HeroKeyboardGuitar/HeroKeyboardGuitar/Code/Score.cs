@@ -3,7 +3,8 @@
 /// <summary>
 /// Holds the current score and streak of the player
 /// </summary>
-public class Score {
+public class Score
+{
     /// <summary>
     /// Amount of notes successfully hit
     /// </summary>
@@ -14,19 +15,25 @@ public class Score {
     /// </summary>
     public int Streak { get; private set; }
 
+    public int HighScore { get; private set; }
+
+
     /// <summary>
     /// initializes both amount and streak to 0
     /// </summary>
-    public Score() {
+    public Score()
+    {
         Amount = 0;
         Streak = 0;
+        HighScore = 0;
     }
 
     /// <summary>
     /// Used to check if the player has reached the point of receiving a reward.
     /// Currently not implemented
     /// </summary>
-    public void CheckReward() {
+    public void CheckReward()
+    {
         // TODO: possibly make this a dictionary mapping genres to reward maps
         //Game.GetRewardMap()
     }
@@ -35,15 +42,21 @@ public class Score {
     /// Add to the current score
     /// </summary>
     /// <param name="amount">Amount to add</param>
-    public void Add(int amount) {
+    public void Add(int amount)
+    {
         Amount += amount;
         Streak++;
+        if (Amount > HighScore)
+        {
+            HighScore = Amount;
+        }
     }
 
     /// <summary>
     /// Resets streak back to 0
     /// </summary>
-    public void Miss() {
+    public void Miss()
+    {
         Streak = 0;
     }
 }

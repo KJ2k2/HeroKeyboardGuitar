@@ -12,6 +12,8 @@ public class Audio {
     private string filePath;
     private AudioFileReader fileReader;
     private List<double> clusters;
+    private bool Paused;
+    private long pausedPosition; //Stores position when paused
 
     /// <summary>
     /// The times at which the music hits a peak. Useful for generating points
@@ -37,6 +39,11 @@ public class Audio {
     public Audio(string filePath) {
         this.filePath = filePath;
         fileReader = new AudioFileReader(filePath);
+
+        //Helps to pause/resume instead of resetting song
+        outputDevice = new WaveOutEvent();
+        outputDevice.PlaybackStopped += OutputDevice_PlaybackStopped; ;
+
         int sampleRate = fileReader.WaveFormat.SampleRate;
         int sampleCount = (int)(fileReader.Length / fileReader.WaveFormat.BitsPerSample / 8);
         int channelCount = fileReader.WaveFormat.Channels;
@@ -99,6 +106,11 @@ public class Audio {
         }
     }
 
+    private void OutputDevice_PlaybackStopped(object? sender, StoppedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     /// Only used for debugging cluster analysis. Use these files in the Octave "reload.m" script
     /// which is in the "Audio Analysis via Octave" folder
@@ -130,15 +142,50 @@ public class Audio {
     /// Start playing the audio
     /// </summary>
     public void Play() {
-        fileReader = new AudioFileReader(filePath);
-        outputDevice.Init(fileReader);
-        outputDevice.Play();
+        if (Paused)
+        {
+            fileReader.Position = pausedPosition;
+            outputDevice.Play();
+            Paused = false;
+        }
+        else
+        {
+            outputDevice.Init(fileReader);
+            outputDevice.Play();
+        }
+        //fileReader = new AudioFileReader(filePath);
+        //outputDevice.Init(fileReader);
+        //fileReader.Position = pausedPosition; //pause
+        //outputDevice.Play();
     }
-
+    /// <summary>
+    /// Pause playing the audio
+    /// </summary>
+    public void Pause()
+    {
+        if(outputDevice.PlaybackState == PlaybackState.Playing)
+        {
+            outputDevice.Pause();
+            Paused = true;
+            pausedPosition = fileReader.Position;
+        }
+        //pausedPosition = fileReader.Position;
+        //outputDevice.Pause();
+    }
     /// <summary>
     /// Stop playing the audio
     /// </summary>
     public void Stop() {
         outputDevice.Stop();
+        pausedPosition = 0;
     }
+    //private void OutputDevice_PlaybackStopped(object sender, StoppedEventArgs e)
+    //{
+    //    //Reset position when stopped
+    //    if (!Paused)
+    //    {
+    //        fileReader.Position = 0;
+    //    }
+    //}
+
 }
