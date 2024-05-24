@@ -16,6 +16,7 @@ internal partial class FrmMain : Form
     private Audio curSong;
     private Score score;
     private bool Colorblind = true;
+    private bool hard;
 
     private bool pause;
     private int playback;//Tracks where song paused
@@ -31,13 +32,14 @@ internal partial class FrmMain : Form
         }
     }
 
-    public FrmMain(bool colorblind)
+    public FrmMain(bool colorblind, bool isHard)
     {
         InitializeComponent();
         Colorblind = colorblind;
         pause = false;
         startTime = DateTime.MinValue;
         playback = 0;
+        hard = isHard;
     }
 
     public void FrmMain_Load(object sender, EventArgs e)
@@ -68,7 +70,7 @@ internal partial class FrmMain : Form
                 Anchor = AnchorStyles.Bottom,
             };
             Controls.Add(picNote);
-            notes.Add(new(picNote, x));
+            notes.Add(new(picNote, x)); //TODO right here
         }
         Timer tmrWaitThenPlay = new()
         {

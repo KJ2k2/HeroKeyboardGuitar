@@ -25,6 +25,7 @@
         private void InitializeComponent()
         {
             checkBox1 = new System.Windows.Forms.CheckBox();
+            checkBox2 = new System.Windows.Forms.CheckBox();
             SuspendLayout();
             // 
             // checkBox1
@@ -35,13 +36,29 @@
             checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(192, 255, 255);
             checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             checkBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            checkBox1.Location = new System.Drawing.Point(12, 711);
+            checkBox1.Location = new System.Drawing.Point(12, 675);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new System.Drawing.Size(132, 30);
+            checkBox1.Size = new System.Drawing.Size(160, 30);
             checkBox1.TabIndex = 0;
-            checkBox1.Text = "Colorblind Mode";
+            checkBox1.Text = "Colorblind Mode: Off";
             checkBox1.UseVisualStyleBackColor = false;
             checkBox1.Click += checkBox1_Click;
+            // 
+            // checkBox2
+            // 
+            checkBox2.Appearance = System.Windows.Forms.Appearance.Button;
+            checkBox2.AutoSize = true;
+            checkBox2.BackColor = System.Drawing.Color.Lime;
+            checkBox2.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(192, 255, 255);
+            checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            checkBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            checkBox2.Location = new System.Drawing.Point(12, 711);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new System.Drawing.Size(115, 30);
+            checkBox2.TabIndex = 1;
+            checkBox2.Text = "Difficulty: Easy";
+            checkBox2.UseVisualStyleBackColor = false;
+            checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
             // FrmSongSelect
             // 
@@ -49,6 +66,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
             ClientSize = new System.Drawing.Size(1211, 753);
+            Controls.Add(checkBox2);
             Controls.Add(checkBox1);
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FrmSongSelect";
@@ -62,5 +80,6 @@
         #endregion
 
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

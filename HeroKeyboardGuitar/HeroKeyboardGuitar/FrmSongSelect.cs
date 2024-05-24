@@ -8,6 +8,7 @@ namespace HeroKeyboardGuitar {
     internal partial class FrmSongSelect : Form
     {
         private bool colorblind = false;
+        private bool hard = false;
         private readonly string SONGS_ROOT_PATH = $"{Application.StartupPath}../../../Songs/";
 
         public FrmSongSelect()
@@ -48,7 +49,7 @@ namespace HeroKeyboardGuitar {
                 btnSong.Click += (e, sender) =>
                 {
                     Game.SetCurSong(filePath, genre);
-                    FrmMain frmMain = new(colorblind);
+                    FrmMain frmMain = new(colorblind, hard);
                     frmMain.Show();
                 };
                 Controls.Add(btnSong);
@@ -58,6 +59,27 @@ namespace HeroKeyboardGuitar {
         private void checkBox1_Click(object sender, EventArgs e)
         {
             colorblind = checkBox1.Checked;
+            if (colorblind)
+            {
+                checkBox1.Text = "Colorblind Mode: On";
+            }
+            else
+            {
+                checkBox1.Text = "Colorblind Mode: Off";
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            hard = checkBox2.Checked;
+            if (hard)
+            {
+                checkBox2.Text = "Difficulty: HARD";
+            }
+            else
+            {
+                checkBox2.Text = "Difficulty: Easy";
+            }
         }
     }
 }
