@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -49,7 +50,7 @@ namespace HeroKeyboardGuitar {
                 btnSong.Click += (e, sender) =>
                 {
                     Game.SetCurSong(filePath, genre);
-                    FrmMain frmMain = new(colorblind, hard);
+                    FrmMain frmMain = new(colorblind, hard, this);
                     frmMain.Show();
                 };
                 Controls.Add(btnSong);
@@ -80,6 +81,10 @@ namespace HeroKeyboardGuitar {
             {
                 checkBox2.Text = "Difficulty: Easy";
             }
+
+       // private void UpdateHighScore() { 
+        
+        //    }
         }
     }
 }

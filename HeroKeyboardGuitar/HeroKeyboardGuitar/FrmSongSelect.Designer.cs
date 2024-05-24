@@ -25,6 +25,8 @@
         private void InitializeComponent()
         {
             label2 = new System.Windows.Forms.Label();
+            checkBox1 = new System.Windows.Forms.CheckBox();
+            checkBox2 = new System.Windows.Forms.CheckBox();
             SuspendLayout();
             // 
             // label2
@@ -33,16 +35,12 @@
             label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             label2.ForeColor = System.Drawing.Color.White;
-            label2.Location = new System.Drawing.Point(0, 664);
+            label2.Location = new System.Drawing.Point(0, 622);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(1211, 89);
+            label2.Size = new System.Drawing.Size(1211, 131);
             label2.TabIndex = 6;
             label2.Text = "HighScore: 0";
-            label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            label2.Click += lblScore_Click;
-            checkBox1 = new System.Windows.Forms.CheckBox();
-            checkBox2 = new System.Windows.Forms.CheckBox();
-            SuspendLayout();
+            label2.Click += checkBox1_Click;
             // 
             // checkBox1
             // 

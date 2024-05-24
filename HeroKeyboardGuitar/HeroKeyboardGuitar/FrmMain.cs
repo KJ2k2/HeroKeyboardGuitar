@@ -32,7 +32,7 @@ internal partial class FrmMain : Form
         }
     }
 
-    public FrmMain(bool colorblind, bool isHard)
+    public FrmMain(bool colorblind, bool isHard, Form SongSelect)
     {
         InitializeComponent();
         Colorblind = colorblind;
@@ -151,6 +151,7 @@ internal partial class FrmMain : Form
 
                     label2.Text = "HighScore: " + score.HighScore.ToString();
                     label2.Font = new("Arial", 42);
+                   
                     break;
                 }
                 
