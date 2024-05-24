@@ -13,6 +13,7 @@ internal partial class FrmMain : Form {
     private const float noteSpeed = 0.5f;
     private Audio curSong;
     private Score score;
+    private bool Colorblind = true;
 
     // for double buffering
     protected override CreateParams CreateParams {
@@ -23,8 +24,9 @@ internal partial class FrmMain : Form {
         }
     }
 
-    public FrmMain() {
+    public FrmMain(bool colorblind) {
         InitializeComponent();
+        Colorblind = colorblind;
     }
 
     public void FrmMain_Load(object sender, EventArgs e) {
@@ -37,7 +39,8 @@ internal partial class FrmMain : Form {
         foreach (var actionTime in curSong.ActionTimes) {
             double x = actionTime * noteSpeed + picTarget.Left + picTarget.Width;
             const int noteSize = 50;
-            if (notes.Any(note => (x - note.Pic.Left) < noteSize / 2)) {
+            //if (notes.Any(note => (x - note.Pic.Left) < noteSize / 2)) {
+            if (notes.Any(note => (x - note.Pic.Left) < noteSize)) {
                 continue;
             }
             PictureBox picNote = new() {
@@ -70,7 +73,7 @@ internal partial class FrmMain : Form {
         int index = curSong.GetPosition();
         foreach (var note in notes) {
             note.Move(tmrPlay.Interval * (noteSpeed * 1.3));
-            if (note.CheckMiss(picTarget)) {
+            if (note.CheckMiss(picTarget, Colorblind)) {
                 score.Miss();
             }
         }
