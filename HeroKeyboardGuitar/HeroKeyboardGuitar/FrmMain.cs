@@ -46,6 +46,8 @@ internal partial class FrmMain : Form
     {
         score = new();
         lblScore.Text = score.Amount.ToString();
+        label1.Text = score.Amount.ToString();
+        label2.Text = score.Amount.ToString();
         panBg.BackgroundImage = Game.GetInstance().GetBg();
         panBg.Height = (int)(Height * 0.8);
         curSong = Game.GetInstance().CurSong;
@@ -95,7 +97,9 @@ internal partial class FrmMain : Form
                 note.Move(tmrPlay.Interval * (noteSpeed * 1.3));
                 if (note.CheckMiss(picTarget, Colorblind))
                 {
+                    
                     score.Miss();
+                    label1.Text = "Streak: " + "0";
                 }
             }
             if (index >= curSong.GetNumberOfSamples() - 1)
@@ -138,10 +142,22 @@ internal partial class FrmMain : Form
                 if (note.CheckHit(picTarget))
                 {
                     score.Add(5);
-                    lblScore.Text = score.Amount.ToString();
+                    lblScore.Text = "Score: "+ score.Amount.ToString();
                     lblScore.Font = new("Arial", 42);
+
+                    label1.Text = "Streak: "+ score.Streak.ToString();
+                    label2.Font = new("Arial", 42);
+
+
+                    label2.Text = "HighScore: " + score.HighScore.ToString();
+                    label2.Font = new("Arial", 42);
                     break;
                 }
+                
+            
+                   
+
+               
             }
         }
         //No other keys are bind
@@ -190,7 +206,10 @@ internal partial class FrmMain : Form
         //curSong.PlayFromPosition(playback);
         curSong.Play();
     }
-    private void QuitGame() { Close();}
+    private void QuitGame() {
+        score.SaveHighScore();
+        Close();
+    }
     //private void EndGame()
     //{
     //    // Save high score or perform other actions

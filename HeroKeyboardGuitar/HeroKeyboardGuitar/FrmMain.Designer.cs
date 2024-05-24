@@ -34,17 +34,19 @@
             lblScore = new System.Windows.Forms.Label();
             tmrScoreShrink = new System.Windows.Forms.Timer(components);
             panBg = new System.Windows.Forms.Panel();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)picTarget).BeginInit();
             panBg.SuspendLayout();
             SuspendLayout();
-            //
+            // 
             // tmrPlay
-            //
+            // 
             tmrPlay.Interval = 50;
             tmrPlay.Tick += tmrPlay_Tick;
-            //
+            // 
             // picTarget
-            //
+            // 
             picTarget.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             picTarget.BackgroundImage = Properties.Resources._default;
             picTarget.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -53,9 +55,9 @@
             picTarget.Size = new System.Drawing.Size(120, 120);
             picTarget.TabIndex = 3;
             picTarget.TabStop = false;
-            //
+            // 
             // lblScore
-            //
+            // 
             lblScore.BackColor = System.Drawing.Color.Transparent;
             lblScore.Dock = System.Windows.Forms.DockStyle.Bottom;
             lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
@@ -64,54 +66,55 @@
             lblScore.Name = "lblScore";
             lblScore.Size = new System.Drawing.Size(1237, 89);
             lblScore.TabIndex = 5;
-            lblScore.Text = "0";
+            lblScore.Text = "Score: 0";
             lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-            ////lblHighScore
-            //lblHighScore.BackColor = System.Drawing.Color.Transparent;
-            //lblHighScore.Dock = System.Windows.Forms.DockStyle.Bottom;
-            //lblHighScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            //lblHighScore.ForeColor = System.Drawing.Color.White;
-            //lblHighScore.Location = new System.Drawing.Point(10, 10);
-            //lblHighScore.Name = "lblHighScore";
-            //lblHighScore.Size = new System.Drawing.Size(1237, 89);
-            //lblHighScore.TabIndex = 5;
-            //lblHighScore.Text = "0";
-            //lblHighScore.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-
-
-            ////Streak
-
-            //lblStreak.BackColor = System.Drawing.Color.Transparent;
-            //lblStreak.Dock = System.Windows.Forms.DockStyle.Bottom;
-            //lblStreak.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            //lblStreak.ForeColor = System.Drawing.Color.White;
-            //lblStreak.Location = new System.Drawing.Point(this.Width - lblStreak.Width - 10, 10);
-            //lblStreak.Name = "lblStreak";
-            //lblStreak.Size = new System.Drawing.Size(1237, 89);
-            //lblStreak.TabIndex = 5;
-            //lblStreak.Text = "0";
-            //lblStreak.TextAlign = System.Drawing.ContentAlignment.TopRight;
-
-            //
+            // 
             // tmrScoreShrink
-            //
+            // 
             tmrScoreShrink.Enabled = true;
             tmrScoreShrink.Tick += tmrScoreShrink_Tick;
-            //
+            // 
             // panBg
-            //
+            // 
             panBg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            panBg.Controls.Add(label2);
+            panBg.Controls.Add(label1);
             panBg.Controls.Add(lblScore);
             panBg.Dock = System.Windows.Forms.DockStyle.Top;
             panBg.Location = new System.Drawing.Point(0, 0);
             panBg.Name = "panBg";
             panBg.Size = new System.Drawing.Size(1237, 480);
             panBg.TabIndex = 6;
-            //
+            // 
+            // label2
+            // 
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(0, 213);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(1237, 89);
+            label2.TabIndex = 7;
+            label2.Text = "HighScore: 0";
+            label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label1
+            // 
+            label1.BackColor = System.Drawing.Color.Transparent;
+            label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(0, 302);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(1237, 89);
+            label1.TabIndex = 6;
+            label1.Text = "Streak: 0";
+            label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FrmMain
-            //
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
             BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -136,10 +139,12 @@
         private System.Windows.Forms.Timer tmrPlay;
         private System.Windows.Forms.PictureBox picTarget;
         private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.Label lblHighScore;
-        private System.Windows.Forms.Label lblStreak;
-        private System.Windows.Forms.Label lblSongLengthInSeconds;
+        //private System.Windows.Forms.Label lblHighScore;
+        //private System.Windows.Forms.Label lblStreak;
+        //private System.Windows.Forms.Label lblSongLengthInSeconds;
         private System.Windows.Forms.Timer tmrScoreShrink;
         private System.Windows.Forms.Panel panBg;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

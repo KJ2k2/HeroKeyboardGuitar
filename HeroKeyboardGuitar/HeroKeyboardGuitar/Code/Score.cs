@@ -15,11 +15,12 @@ public class Score
     /// </summary>
     public int Streak { get; private set; }
 
+    //Current HighScore saved
     public int HighScore { get; private set; }
 
 
     /// <summary>
-    /// initializes both amount and streak to 0
+    /// initializes amount, streak to 0, and HighScore to 0
     /// </summary>
     public Score()
     {
@@ -45,18 +46,25 @@ public class Score
     public void Add(int amount)
     {
         Amount += amount;
-        Streak++;
+        Streak += amount;
+        HighScore += amount;
+     
         if (Amount > HighScore)
         {
             HighScore = Amount;
         }
     }
 
+    public int SaveHighScore() {
+        return HighScore;
+    }
     /// <summary>
     /// Resets streak back to 0
     /// </summary>
     public void Miss()
     {
         Streak = 0;
+       
+        HighScore = SaveHighScore();
     }
 }

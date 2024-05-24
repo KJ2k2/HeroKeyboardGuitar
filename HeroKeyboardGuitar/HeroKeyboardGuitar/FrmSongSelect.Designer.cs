@@ -24,6 +24,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label2 = new System.Windows.Forms.Label();
+            SuspendLayout();
+            // 
+            // label2
+            // 
+            label2.BackColor = System.Drawing.Color.Transparent;
+            label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(0, 664);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(1211, 89);
+            label2.TabIndex = 6;
+            label2.Text = "HighScore: 0";
+            label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            label2.Click += lblScore_Click;
             checkBox1 = new System.Windows.Forms.CheckBox();
             checkBox2 = new System.Windows.Forms.CheckBox();
             SuspendLayout();
@@ -67,6 +83,7 @@
             BackColor = System.Drawing.Color.Black;
             ClientSize = new System.Drawing.Size(1211, 753);
             Controls.Add(checkBox2);
+            Controls.Add(label2);
             Controls.Add(checkBox1);
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FrmSongSelect";
@@ -79,6 +96,7 @@
 
         #endregion
 
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
     }
