@@ -12,6 +12,7 @@ public class Audio {
     private string filePath;
     private AudioFileReader fileReader;
     private List<double> clusters;
+    private long pausedPosition; //stores pause
 
     /// <summary>
     /// The times at which the music hits a peak. Useful for generating points
@@ -37,6 +38,11 @@ public class Audio {
     public Audio(string filePath) {
         this.filePath = filePath;
         fileReader = new AudioFileReader(filePath);
+
+        //Helps to pause/resume instead of resetting song
+        outputDevice = new WaveOutEvent();
+        outputDevice.Init(fileReader);
+
         int sampleRate = fileReader.WaveFormat.SampleRate;
         int sampleCount = (int)(fileReader.Length / fileReader.WaveFormat.BitsPerSample / 8);
         int channelCount = fileReader.WaveFormat.Channels;
@@ -132,13 +138,23 @@ public class Audio {
     public void Play() {
         fileReader = new AudioFileReader(filePath);
         outputDevice.Init(fileReader);
+        fileReader.Position = pausedPosition; //pause
         outputDevice.Play();
     }
-
+    /// <summary>
+    /// Pause playing the audio
+    /// </summary>
+    public void Pause()
+    {
+        pausedPosition = fileReader.Position;
+        outputDevice.Pause();
+    }
     /// <summary>
     /// Stop playing the audio
     /// </summary>
     public void Stop() {
         outputDevice.Stop();
+        pausedPosition = 0;
     }
+
 }
